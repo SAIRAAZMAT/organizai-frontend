@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 type Member = {
   id: number;
   name: string;
@@ -9,8 +11,8 @@ type Member = {
 
 const members: Member[] = [
   { id: 1, name: "Ahmad Taj", role: "Backend Developer", department: "Engineering", skills: ["Node.js", "PostgreSQL"], workload: 40 },
-  { id: 2, name: "Saira Azmat", role: "AI Engineer", department: "AI & Research", skills: ["Python", "NLP", "RAG"], workload: 75 },
-  { id: 3, name: "Muhammad Burhan Khan", role: "Frontend Developer", department: "Engineering", skills: ["Next.js", "Tailwind"], workload: 55 },
+  { id: 2, name: "Saira Azmat", role: "Frontend Developer", department: "Engineering", skills: ["Next.js", "Tailwind"], workload: 75 },
+  { id: 3, name: "Muhammad Burhan Khan", role: "AI Engineer", department: "AI & Research", skills: ["Python", "NLP", "RAG"], workload: 55 },
 ];
 
 function workloadColor(workload: number) {
@@ -36,7 +38,11 @@ export default function Team() {
             {members
               .filter((member) => member.department === dept)
               .map((member) => (
-                <div key={member.id} className="rounded-xl border border-zinc-200 p-5">
+                <Link
+                  key={member.id}
+                  href={`/team/${member.id}`}
+                  className="block rounded-xl border border-zinc-200 p-5 hover:shadow-md transition-shadow"
+                >
                   <h3 className="font-semibold text-zinc-900">{member.name}</h3>
                   <p className="text-sm text-zinc-500">{member.role}</p>
 
@@ -63,7 +69,7 @@ export default function Team() {
                       />
                     </div>
                   </div>
-                </div>
+                </Link>
               ))}
           </div>
         </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { currentUser } from "../../lib/currentUser";
 
 type Project = {
   id: number;
@@ -37,21 +38,23 @@ export default function Projects() {
     <div className="p-10 flex-1">
       <h1 className="text-2xl font-bold text-zinc-900 mb-6">Projects</h1>
 
-      <div className="flex gap-2 mb-6">
-        <input
-          type="text"
-          value={newName}
-          onChange={(e) => setNewName(e.target.value)}
-          placeholder="New project name..."
-          className="flex-1 max-w-md rounded-lg border border-zinc-300 px-3 py-2 text-sm"
-        />
-        <button
-          onClick={handleAddProject}
-          className="rounded-lg bg-zinc-900 text-white px-4 py-2 text-sm font-medium hover:bg-zinc-800"
-        >
-          New Project
-        </button>
-      </div>
+           {currentUser.role === "Admin" && (
+        <div className="flex gap-2 mb-6">
+          <input
+            type="text"
+            value={newName}
+            onChange={(e) => setNewName(e.target.value)}
+            placeholder="New project name..."
+            className="flex-1 max-w-md rounded-lg border border-zinc-300 px-3 py-2 text-sm"
+          />
+          <button
+            onClick={handleAddProject}
+            className="rounded-lg bg-zinc-900 text-white px-4 py-2 text-sm font-medium hover:bg-zinc-800"
+          >
+            New Project
+          </button>
+        </div>
+      )}
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {projects.map((project) => {

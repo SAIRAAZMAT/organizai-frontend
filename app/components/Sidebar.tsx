@@ -8,6 +8,7 @@ const links = [
   { href: "/tasks", label: "Tasks" },
   { href: "/projects", label: "Projects" },
   { href: "/knowledge", label: "Knowledge Base" },
+   { href: "/team", label: "Team" },
 ];
 
 export default function Sidebar() {
